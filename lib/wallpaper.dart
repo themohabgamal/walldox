@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:walldox/api.dart';
 import 'package:walldox/fullscreen.dart';
 import 'package:walldox/response_model.dart';
+import 'package:walldox/search.dart';
 
 class Wallpaper extends StatefulWidget {
   static const String routeName = 'wallpapers';
@@ -25,10 +26,21 @@ class _WallpaperState extends State<Wallpaper> {
         backgroundColor: Colors.black,
         title: Text(
           "Walldox",
-          style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 30)),
+          style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 30)),
         ),
         centerTitle: true,
         elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(context: context, delegate: Search());
+              },
+            ),
+          )
+        ],
       ),
       body: Column(
         children: [
@@ -43,7 +55,7 @@ class _WallpaperState extends State<Wallpaper> {
                   );
                 } else if (snapshot.connectionState ==
                     ConnectionState.waiting) {
-                  return SizedBox();
+                  return const SizedBox();
                 } else if (snapshot.hasData) {
                   var wallpapers = snapshot.data?.photos;
                   return GridView.builder(
@@ -71,7 +83,7 @@ class _WallpaperState extends State<Wallpaper> {
                     itemCount: wallpapers?.length,
                   );
                 } else
-                  return SizedBox();
+                  return const SizedBox();
               },
             ),
           )),
@@ -89,7 +101,7 @@ class _WallpaperState extends State<Wallpaper> {
                   child: Text(
                 "Shuffle More Wallpapers",
                 style: GoogleFonts.poppins(
-                    textStyle: TextStyle(fontSize: 15, letterSpacing: 1)),
+                    textStyle: const TextStyle(fontSize: 15, letterSpacing: 1)),
               )),
             ),
           ),

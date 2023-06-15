@@ -17,4 +17,16 @@ class API {
     var json = jsonDecode(responseBody);
     return ResponseModel.fromJson(json);
   }
+
+  static Future<ResponseModel> searchForWallpaper(String? query) async {
+    var response = await http.get(
+        Uri.parse("https://api.pexels.com/v1/search?query=${query}"),
+        headers: {
+          "Authorization":
+              "iQAG9Pd6BTA4IHEck7fgjiKYU3deEeoQKpliI79Q3ZJnRg6j5J5oSBEy"
+        });
+    var responseBody = response.body;
+    var json = jsonDecode(responseBody);
+    return ResponseModel.fromJson(json);
+  }
 }

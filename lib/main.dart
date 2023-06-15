@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:walldox/fullscreen.dart';
+import 'package:walldox/splash.dart';
 import 'package:walldox/wallpaper.dart';
 
 void main() {
@@ -16,10 +17,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Walldox',
       theme: ThemeData(brightness: Brightness.dark),
-      initialRoute: Wallpaper.routeName,
+      initialRoute: Splash.routeName,
       routes: {
         Fullscreen.routeName: (context) => Fullscreen(),
-        Wallpaper.routeName: (context) => Wallpaper()
+        Wallpaper.routeName: (context) => Wallpaper(),
+        Splash.routeName: (context) => Splash()
       },
     );
   }

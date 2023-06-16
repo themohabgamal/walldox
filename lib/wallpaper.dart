@@ -72,7 +72,7 @@ class _WallpaperState extends State<Wallpaper> {
                       return GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, Fullscreen.routeName,
-                              arguments: wallpapers?[index].src?.large2x);
+                              arguments: wallpapers?[index].src?.portrait);
                         },
                         child: Container(
                           color: Colors.white,

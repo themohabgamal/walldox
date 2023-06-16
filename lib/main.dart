@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:walldox/categories_screen.dart';
+import 'package:walldox/category_result.dart';
 import 'package:walldox/fullscreen.dart';
 import 'package:walldox/splash.dart';
 import 'package:walldox/wallpaper.dart';
@@ -21,7 +23,9 @@ class MyApp extends StatelessWidget {
       routes: {
         Fullscreen.routeName: (context) => Fullscreen(),
         Wallpaper.routeName: (context) => Wallpaper(),
-        Splash.routeName: (context) => Splash()
+        Splash.routeName: (context) => Splash(),
+        CategoriesScreen.routeName: (context) => CategoriesScreen(),
+        CategoryResult.routeName: (context) => CategoryResult(),
       },
     );
   }

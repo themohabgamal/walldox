@@ -40,6 +40,7 @@ dependencies:
   flutter_cache_manager: ^3.3.0
   flutter_wallpaper_manager: ^0.0.3
   lottie: ^2.3.2
+  blurrycontainer: ^1.0.2
 
 dev_dependencies:
   flutter_test:

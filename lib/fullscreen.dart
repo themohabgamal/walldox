@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
@@ -47,6 +49,18 @@ class _FullscreenState extends State<Fullscreen> {
             onTap: () {
               setState(() {
                 setWallpaper(imageUrl);
+                var snackBar = SnackBar(
+                    duration: Duration(seconds: 2),
+                    backgroundColor: Colors.lime,
+                    content: Text(
+                      'Wallpaper was set successfully!',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Colors.black)),
+                    ));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               });
             },
             child: Container(

@@ -1,56 +1,32 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:walldox/api.dart';
-import 'package:walldox/categories_screen.dart';
 import 'package:walldox/fullscreen.dart';
-import 'package:walldox/response_model.dart';
-import 'package:walldox/search.dart';
 
-class Wallpaper extends StatefulWidget {
-  static const String routeName = 'wallpapers';
-  const Wallpaper({super.key});
+class CategoryResult extends StatelessWidget {
+  static const String routeName = 'res';
+  const CategoryResult({super.key});
 
-  @override
-  State<Wallpaper> createState() => _WallpaperState();
-}
-
-class _WallpaperState extends State<Wallpaper> {
-  int page = 1;
   @override
   Widget build(BuildContext context) {
+    var query = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
         title: Text(
-          "Walldox",
-          style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 30)),
+          query,
+          style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 25)),
         ),
         centerTitle: true,
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                showSearch(context: context, delegate: Search());
-              },
-            ),
-          )
-        ],
+        backgroundColor: Colors.black,
       ),
       body: Column(
         children: [
           Expanded(
               child: Container(
             child: FutureBuilder(
-              future: API.getWallpapers(page),
+              future: API.searchForWallpaper(query),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Center(
@@ -66,8 +42,8 @@ class _WallpaperState extends State<Wallpaper> {
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                             childAspectRatio: 2 / 3,
-                            crossAxisSpacing: 7,
-                            mainAxisSpacing: 7),
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5),
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
@@ -90,40 +66,6 @@ class _WallpaperState extends State<Wallpaper> {
               },
             ),
           )),
-          Container(
-            width: double.infinity,
-            color: Colors.black,
-            height: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      page++;
-                    });
-                  },
-                  child: Container(
-                      child: Center(
-                    child: Icon(
-                      Icons.shuffle,
-                    ),
-                  )),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, CategoriesScreen.routeName);
-                  },
-                  child: Container(
-                      child: Center(
-                    child: Icon(
-                      Icons.filter,
-                    ),
-                  )),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

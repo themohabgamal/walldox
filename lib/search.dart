@@ -10,7 +10,7 @@ class Search extends SearchDelegate {
     return [
       IconButton(
           onPressed: () {
-            query = '';
+            Navigator.pop(context);
           },
           icon: Icon(Icons.clear)),
     ];
